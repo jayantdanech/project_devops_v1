@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  staging:
+    image: localhost:5000/myapp:staging
+    container_name: app_staging
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./env/staging.env
+    restart: always
+
+  uat:
+    image: localhost:5000/myapp:uat
+    container_name: app_uat
+    ports:
+      - "5002:5000"
+    env_file:
+      - ./env/uat.env
+    restart: always
+
+  prod:
+    image: localhost:5000/myapp:prod
+    container_name: app_prod
+    ports:
+      - "5003:5000"
+    env_file:
+      - ./env/prod.env
+    restart: always
+
+networks:
+  default:
+    name: devops_network
+    external: true
+
